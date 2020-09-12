@@ -6,7 +6,7 @@ const { MongoLibMock, getAllStub } = require('../utils/mocks/mongoLib');
 const { moviesMock } = require('../utils/mocks/movies');
 
 describe('Services - movies', function() {
-    const MoviesServices = require('../services/movies', {
+    const MoviesServices = proxyquire('../services/movies', {
         '../lib/mongo': MongoLibMock
     });
 
@@ -15,14 +15,13 @@ describe('Services - movies', function() {
     describe('when getMovies method is called', async function() {
         it('should call the getall MongoLib method', async function() {
             await moviesService.getMovies({});
-            console.log(getAllStub.called, 'called');
             assert.strictEqual(getAllStub.called, true);
         });
 
-        // it('should return an array of movies', async function() {
-        //     const result = await moviesService.getMovies({});
-        //     const expected = moviesMock;
-        //     assert.deepEqual(result, expected);
-        // });
+        it('should return an array of movies', async function() {
+            const result = await moviesService.getMovies({});
+            const expected = moviesMock;
+            assert.deepEqual(result, expected);
+        });
     });
 });

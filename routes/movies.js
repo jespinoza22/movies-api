@@ -23,7 +23,7 @@ function moviesApi(app){
 
             res.status(200).json({
                 data: movies,
-                message: 'movies ok'
+                message: 'movies listed'
             })
         } catch (error) {
             next(error);
@@ -51,7 +51,7 @@ function moviesApi(app){
 
             res.status(201).json({
                 data: createMovieId,
-                message: 'movies create'
+                message: 'movies created'
             })
         } catch (error) {
             next(error);
