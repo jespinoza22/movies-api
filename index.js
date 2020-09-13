@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+// const cors = require('cors');
 const { config } = require('./config/index');
 const moviesApi = require('./routes/movies.js');
 
@@ -25,6 +25,12 @@ app.use(notFoundHandler);
 app.use(logErrors);
 app.use(wrapError);
 app.use(errorHandler);
+
+// app.use(cors()); //Cors for all request
+/*
+const corsOptions = { origin: "http://example.com" };
+
+app.use(cors(corsOptions));*/ // Cors for some domains
 
 app.listen(config.port, function() {
     console.log(`Listening http:localhost:${config.port}`)
